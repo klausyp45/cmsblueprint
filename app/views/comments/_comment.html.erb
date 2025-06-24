@@ -1,0 +1,12 @@
+<div class="border-l-4 border-gray-200 pl-4 py-2">
+  <div class="text-sm text-gray-500 mb-1">
+    <%= comment.user.email %> • <%= time_ago_in_words(comment.created_at) %> ago
+  </div>
+  <p class="text-gray-800"><%= comment.body %></p>
+  
+  <% if current_user == comment.user %>
+    <div class="mt-1">
+      <%= button_to "Delete", comment_path(comment), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "text-red-500 hover:underline text-sm" %>
+    </div>
+  <% end %>
+</div>

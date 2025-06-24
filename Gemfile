@@ -41,6 +41,9 @@ gem "thruster", require: false
 
 gem 'devise'
 
+gem "sprockets-rails"
+gem "importmap-rails"
+
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
@@ -67,3 +70,5 @@ group :test do
 end
 
 gem "pundit", "~> 2.5"
+
+gem "administrate"
