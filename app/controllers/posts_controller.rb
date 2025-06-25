@@ -4,7 +4,7 @@ class PostsController < ApplicationController
         
         # Optional: Filter by post type if type parameter exists
         if params[:type].present?
-        @posts = @posts.where(post_type: params[:type])
+            @posts = @posts.where(post_type: params[:type])
         end
         
         # Optional: Pagination
