@@ -1,0 +1,40 @@
+/* Custom Bootstrap variables */
+$primary: #14b8a6;
+$secondary: #0ea5e9;
+
+/* Import Bootstrap to set variables */
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
+
+/* Custom styles */
+.post-card {
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-type {
+    &.blog { background-color: $purple-100; color: $purple-800; }
+    &.event { background-color: $blue-100; color: $blue-800; }
+    &.news { background-color: $green-100; color: $green-800; }
+  }
+  
+  .like-btn {
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* Responsive adjustments */
+@include media-breakpoint-down(md) {
+  .post-card {
+    margin-bottom: 1rem;
+  }
+}

@@ -1,75 +1,93 @@
-<div class="space-y-6">
-  <% if @posts.present? %>
-    <% @posts.each do |post| %>
-      <div class="post-card border rounded-lg p-6 shadow-sm mb-4">
-        <h2 class="text-xl font-bold text-gray-800 mb-1">
-          <%= post.title %>
-        </h2>
-        
-        <div class="flex items-center text-sm text-gray-500 mb-2">
-          <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded mr-2">
-            <%= post.post_type.titleize %>
-          </span>
-          <span class="mr-2">•</span>
-          <span class="text-gray-600">
-            Posted by <%= post.user.email %>
-          </span>
-          <span class="mr-2">•</span>
-          <span class="text-gray-500">
-            <%= time_ago_in_words(post.created_at) %> ago
-          </span>
+<div class="container py-5">
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <h1 class="display-6">Latest Posts</h1>
+    <% if current_user %>
+      <%= link_to new_post_path, class: "btn btn-primary" do %>
+        <i class="bi bi-plus-circle me-2"></i>New Post
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <% if @posts.present? %>
+      <% @posts.each do |post| %>
+        <div class="col-md-8 mx-auto mb-4">
+          <div class="post-card card shadow-sm">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <span class="post-type <%= post.post_type %> badge rounded-pill mb-2">
+                    <%= post.post_type.titleize %>
+                  </span>
+                  <h2 class="h4 card-title">
+                    <%= link_to post.title, post, class: "text-decoration-none text-reset" %>
+                  </h2>
+                </div>
+                <div class="flex-shrink-0">
+                  <%= image_tag "user-placeholder.png", class: "rounded-circle", width: "40" %>
+                </div>
+              </div>
+
+              <p class="card-text text-muted mt-3 mb-3">
+                <%= truncate(post.body, length: 150) %>
+              </p>
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="text-muted small">
+                  <span class="me-3">
+                    <i class="bi bi-clock me-1"></i>
+                    <%= time_ago_in_words(post.created_at) %> ago
+                  </span>
+                  <span>
+                    <i class="bi bi-chat me-1"></i>
+                    <%= post.comments.count %> comments
+                  </span>
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <% if current_user %>
+                    <% if current_user.liked?(post) %>
+                      <%= button_to unlike_post_path(post), method: :delete, class: "like-btn btn btn-sm btn-link text-danger me-2", title: "Unlike" do %>
+                        <i class="bi bi-heart-fill me-1"></i>
+                        <%= post.likes.count %>
+                      <% end %>
+                    <% else %>
+                      <%= button_to like_post_path(post), method: :post, class: "like-btn btn btn-sm btn-link text-muted me-2", title: "Like" do %>
+                        <i class="bi bi-heart me-1"></i>
+                        <%= post.likes.count %>
+                      <% end %>
+                    <% end %>
+                  <% else %>
+                    <%= link_to new_user_session_path, class: "btn btn-sm btn-link text-muted me-2", title: "Sign in to like" do %>
+                      <i class="bi bi-heart me-1"></i>
+                      <%= post.likes.count %>
+                    <% end %>
+                  <% end %>
+
+                  <%= link_to post, class: "btn btn-sm btn-outline-primary" do %>
+                    Read more
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <p class="text-gray-700 mb-4">
-          <%= truncate(post.body, length: 100, separator: ' ') %>...
-          <%= link_to "Read more", post, class: "text-blue-500 hover:underline ml-1" %>
-        </p>
-        
-        <div class="flex items-center space-x-4 text-sm text-gray-500 border-t pt-3">
-          <!-- Like Button -->
-          <div class="flex items-center space-x-1">
+      <% end %>
+    <% else %>
+      <div class="col-md-6 mx-auto text-center py-5">
+        <div class="card">
+          <div class="card-body">
+            <i class="bi bi-newspaper display-4 text-muted mb-4"></i>
+            <h3 class="h4">No posts yet</h3>
+            <p class="text-muted mb-4">Get started by creating your first post.</p>
             <% if current_user %>
-              <% if current_user.liked?(post) %>
-                <%= button_to unlike_post_path(post), method: :delete, class: "text-red-500 hover:text-red-600 flex items-center" do %>
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
-                  </svg>
-                  <span><%= post.likes.count %></span>
-                <% end %>
-              <% else %>
-                <%= button_to like_post_path(post), method: :post, class: "text-gray-500 hover:text-red-500 flex items-center" do %>
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                  </svg>
-                  <span><%= post.likes.count %></span>
-                <% end %>
-              <% end %>
-            <% else %>
-              <%= link_to new_user_session_path, class: "flex items-center text-gray-500 hover:text-red-500" do %>
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                </svg>
-                <span><%= post.likes.count %></span>
+              <%= link_to new_post_path, class: "btn btn-primary" do %>
+                <i class="bi bi-plus-circle me-2"></i>New Post
               <% end %>
             <% end %>
-          </div>
-          
-          <!-- Comment Count -->
-          <div class="flex items-center space-x-1">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-            </svg>
-            <span><%= post.comments.count %> comments</span>
           </div>
         </div>
       </div>
     <% end %>
-  <% else %>
-    <div class="text-center py-8">
-      <p class="text-gray-500">No posts found.</p>
-      <% if current_user %>
-        <%= link_to "Create your first post", new_post_path, class: "btn-primary mt-4" %>
-      <% end %>
-    </div>
-  <% end %>
+  </div>
 </div>
