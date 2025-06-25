@@ -1,6 +1,12 @@
 <div class="container py-5">
   <div class="d-flex justify-content-between align-items-center mb-5">
     <h1 class="display-6">Latest Posts</h1>
+    <div class="flex space-x-4 mb-6">
+      <%= link_to "All Posts", posts_path, class: "btn" %>
+      <%= link_to "Blog Posts", posts_path(type: "blog"), class: "btn" %>
+      <%= link_to "Event Posts", posts_path(type: "event"), class: "btn" %>
+      <%= link_to "News Posts", posts_path(type: "news"), class: "btn" %>
+    </div>
     <% if current_user %>
       <%= link_to new_post_path, class: "btn btn-primary" do %>
         <i class="bi bi-plus-circle me-2"></i>New Post
@@ -24,7 +30,7 @@
                   </h2>
                 </div>
                 <div class="flex-shrink-0">
-                  <%= image_tag "user-placeholder.png", class: "rounded-circle", width: "40" %>
+                  
                 </div>
               </div>
 
@@ -89,5 +95,7 @@
         </div>
       </div>
     <% end %>
+    <%# Optional: Add pagination links if using pagination %>
+    <%# <%= paginate @posts %>
   </div>
 </div>

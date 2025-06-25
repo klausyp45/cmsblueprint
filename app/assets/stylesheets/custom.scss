@@ -8,6 +8,10 @@ $secondary: #0ea5e9;
 @import "bootstrap/scss/mixins";
 
 /* Custom styles */
+body {
+  background-color: #000000;
+  color: #374151;
+}
 .post-card {
   transition: all 0.3s ease;
   margin-bottom: 1.5rem;
