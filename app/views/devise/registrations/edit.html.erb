@@ -1,0 +1,46 @@
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10 mx-auto col-lg-7">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="mb-4 text-center">Edit your account</h2>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="form-floating mb-3">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
+              <%= f.label :email, class: "form-label" %>
+            </div>
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div class="mb-3">
+                <div class="alert alert-warning">
+                  Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+                </div>
+              </div>
+            <% end %>
+            <div class="form-floating mb-3">
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "New password" %>
+              <%= f.label :password, class: "form-label" %>
+              <small class="form-text text-muted">Leave blank if you don't want to change it</small>
+            </div>
+            <div class="form-floating mb-3">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm new password" %>
+              <%= f.label :password_confirmation, class: "form-label" %>
+            </div>
+            <div class="form-floating mb-3">
+              <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control", placeholder: "Current password" %>
+              <%= f.label :current_password, class: "form-label" %>
+              <small class="form-text text-muted">We need your current password to confirm your changes</small>
+            </div>
+            <div class="d-grid mb-3">
+              <%= f.submit "Update", class: "btn btn-primary btn-lg" %>
+            </div>
+          <% end %>
+          <div class="text-center mt-3">
+            <%= link_to "Cancel my account", registration_path(resource_name), data: { turbo_method: :delete, confirm: "Are you sure?" }, class: "btn btn-outline-danger mb-2" %>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
