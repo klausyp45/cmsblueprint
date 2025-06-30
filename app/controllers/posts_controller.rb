@@ -10,4 +10,14 @@ class PostsController < ApplicationController
         # Optional: Pagination
         @posts = @posts.page(params[:page]).per(10) # if using pagination gem
     end
+    def show
+        @post = Post.find(params[:id])
+        @comments = @post.comments.order(created_at: :desc)
+        @like = @post.likes.find_by(user: current_user) if user_signed_in?
+        
+        # Optional: Load more comments
+        if params[:load_more_comments].present?
+            @comments = @comments.page(params[:page]).per(5) # if using pagination gem
+        end
+    end
 end

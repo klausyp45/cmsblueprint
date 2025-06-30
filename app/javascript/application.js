@@ -3,4 +3,4 @@ import "@hotwired/turbo-rails"
 
 // Relative imports for your files
 import "./controllers/index.js"
-import "./vendor/bootstrap.js"
+import "bootstrap"
