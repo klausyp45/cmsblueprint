@@ -59,7 +59,7 @@
                     <div class="comments-wrapper">
                         <div class="row d-flex justify-content-center">
                             <div class="">
-                                <h3 class="font-semibold">Comments</h3>
+                                <h3 class="font-semibold"><%= pluralize(@post.comments.count, "Comment") %></h3>
                                 <%= render @post.comments.order(created_at: :desc) %>
                             </div>
                         </div>

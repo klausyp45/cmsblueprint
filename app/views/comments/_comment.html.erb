@@ -18,7 +18,7 @@
 
     <% if current_user == comment.user %>
       <div class="mt-1">
-        <%= button_to "Delete", comment_path(comment), method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "text-red-500 hover:underline text-sm" %>
+        <%= button_to "Delete", [comment.commentable, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-link text-danger p-0" %> 
       </div>
     <% end %>
 
