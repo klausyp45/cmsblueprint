@@ -259,11 +259,6 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.4.0)
-    propshaft (1.1.0)
-      actionpack (>= 7.0.0)
-      activesupport (>= 7.0.0)
-      rack
-      railties (>= 7.0.0)
     psych (5.2.6)
       date
       stringio
@@ -461,7 +456,6 @@ DEPENDENCIES
   kamal
   pg (~> 1.1)
   popper_js (~> 2.11)
-  propshaft
   puma (>= 5.0)
   pundit (~> 2.5)
   rails (~> 7.1.3)
