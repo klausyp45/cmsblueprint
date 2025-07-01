@@ -1,3 +1,49 @@
+<nav class="py-2 bg-light border-bottom">
+  <div class="container d-flex flex-wrap">
+    <ul class="nav me-auto">
+      <li class="nav-item">
+        <a href="/" class="nav-link link-dark px-2 active" aria-current="page">Home</a>
+      </li>
+      <li class="nav-item">
+        <%= link_to "All Posts", posts_path, class: "nav-link link-dark px-2" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Blog Posts", posts_path(type: "blog"), class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Event Posts", posts_path(type: "event"), class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+        <%= link_to "News Posts", posts_path(type: "news"), class: "nav-link" %>
+      </li>
+    </ul>
+    <ul class="nav">
+      <% if current_user %>
+        <li class="nav-item">
+          <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<header class="py-3 mb-4 border-bottom">
+  <div class="container d-flex flex-wrap justify-content-center">
+    <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-4">Double header</span>
+    </a>
+    <form class="col-12 col-lg-auto mb-3 mb-lg-0">
+      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    </form>
+  </div>
+</header>
 <% flash.each do |type, message| %>
     <% bs_class = { notice: "success", alert: "danger", error: "danger" }[type.to_sym] || "info" %>
     <div class="alert alert-<%= bs_class %> alert-dismissible fade show" role="alert">
@@ -5,41 +51,3 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 <% end %>
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">Latest Posts</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-        <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
-        </li>
-        <%= link_to "All Posts", posts_path, class: "nav-link" %>
-        <%= link_to "Blog Posts", posts_path(type: "blog"), class: "nav-link" %>
-        <%= link_to "Event Posts", posts_path(type: "event"), class: "nav-link" %>
-        <%= link_to "News Posts", posts_path(type: "news"), class: "nav-link" %>
-        <% if current_user %>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link" %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
-          </li>
-        <% end %>
-      </ul>
-      <form class="d-flex" action="#" method="get">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
