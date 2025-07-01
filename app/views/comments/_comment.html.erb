@@ -16,25 +16,24 @@
       <%= comment.body %>
     </p>
 
-    <% if current_user == comment.user %>
-      <div class="mt-1">
-        <%= button_to "Delete", [comment.commentable, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-link text-danger p-0" %> 
-      </div>
-    <% end %>
-
     <div class="small d-flex justify-content-start">
-      <a href="#!" class="d-flex align-items-center me-3">
+      <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
         <i class="far fa-thumbs-up me-2"></i>
         <p class="mb-0">Like</p>
       </a>
-      <a href="#!" class="d-flex align-items-center me-3">
+      <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
         <i class="far fa-comment-dots me-2"></i>
         <p class="mb-0">Comment</p>
       </a>
-      <a href="#!" class="d-flex align-items-center me-3">
+      <a href="#!" class="d-flex align-items-center me-3 text-decoration-none">
         <i class="fas fa-share me-2"></i>
         <p class="mb-0">Share</p>
       </a>
+      <% if current_user == comment.user %>
+        <div class="mt-1">
+          <%= button_to "Delete", [comment.commentable, comment], method: :delete, form: { data: { turbo_confirm: "Are you sure?" } }, class: "btn btn-sm btn-link text-danger text-decoration-none p-0" %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

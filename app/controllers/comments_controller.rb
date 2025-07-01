@@ -15,13 +15,23 @@ class CommentsController < ApplicationController
     redirect_back fallback_location: @commentable.is_a?(Post) ? post_path(@commentable) : root_path
   end
 
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.user == current_user
+      @comment.destroy
+      flash[:notice] = "Comment deleted successfully."
+    else
+      flash[:alert] = "You can only delete your own comments."
+    end
+    redirect_back fallback_location: root_path
+  end
+
   private
 
   def comment_params
     params.require(:comment).permit(:body)
   end
 
-  # Supports comments on posts and comments on comments
   def find_commentable
     if params[:post_id]
       Post.find(params[:post_id])
