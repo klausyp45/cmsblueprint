@@ -20,6 +20,22 @@
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm password" %>
             <%= f.label :password_confirmation, class: "form-label" %>
           </div>
+          <div class="form-floating mb-3">
+            <%= f.text_field :first_name, class: "form-control", placeholder: "first_name" %>
+            <%= f.label :first_name, class: "form-label" %>
+          </div>
+          <div class="form-floating mb-3">
+            <%= f.text_field :last_name, class: "form-control", placeholder: "last_name" %>
+            <%= f.label :last_name, class: "form-label" %>
+          </div>
+          <div class="form-floating mb-3">
+            <%= f.telephone_field :phone_number, class: "form-control", placeholder: "phone_number" %>
+            <%= f.label :phone_number, class: "form-label" %>
+          </div>
+          <div class="form-floating mb-3">
+            <%= f.text_field :profile_picture, class: "form-control", placeholder: "profile_picture" %>
+            <%= f.label :profile_picture, class: "form-label" %>
+          </div>
           <div class="d-grid mb-3">
             <%= f.submit "Sign up", class: "btn btn-success btn-lg" %>
           </div>

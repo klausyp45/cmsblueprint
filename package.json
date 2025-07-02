@@ -2,11 +2,11 @@
   "name": "app",
   "private": true,
   "devDependencies": {
-    "sass": "^1.77.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@tailwindcss/typography": "^0.5.16",
-    "esbuild": "^0.25.5"
+    "esbuild": "^0.25.5",
+    "sass": "^1.77.0"
   },
   "scripts": {
     "build": "esbuild app/javascript/application.js --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
@@ -18,7 +18,7 @@
     "@popperjs/core": "^2.11.8",
     "@rails/actiontext": "^8.0.200",
     "@tailwindcss/cli": "^4.1.10",
-    "bootstrap": "^5.0.2",
+    "bootstrap": "^5.3.7",
     "tailwindcss": "^4.1.10",
     "trix": "^2.1.15"
   },
