@@ -454,6 +454,7 @@ DEPENDENCIES
   jquery-rails (~> 4.6)
   jsbundling-rails
   kamal
+  kaminari
   pg (~> 1.1)
   popper_js (~> 2.11)
   puma (>= 5.0)

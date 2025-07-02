@@ -8,7 +8,7 @@ class PostsController < ApplicationController
         end
         
         # Optional: Pagination
-        @posts = @posts.page(params[:page]).per(10) # if using pagination gem
+        @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # if using pagination gem
     end
     def show
         @post = Post.find(params[:id])
