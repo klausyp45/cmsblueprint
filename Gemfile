@@ -67,7 +67,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'faker', '~> 3.2'
+  gem 'faker', '~> 3.5'
 end
 
 gem "pundit", "~> 2.5"
