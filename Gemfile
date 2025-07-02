@@ -72,7 +72,7 @@ end
 
 gem "pundit", "~> 2.5"
 gem "administrate"
-gem "bootstrap", "= 5.0.2"
+gem "bootstrap", "5.3.5"
 gem "jquery-rails", "~> 4.6"
 gem "popper_js", "~> 2.11"
 gem "kaminari"
