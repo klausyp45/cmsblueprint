@@ -8,7 +8,7 @@
     "esbuild": "^0.25.5"
   },
   "scripts": {
-    "build": "...",
+    "build": "esbuild app/javascript/application.js --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css": "sass ./app/assets/stylesheets/application.scss ./app/assets/builds/application.css"
   },
   "dependencies": {
