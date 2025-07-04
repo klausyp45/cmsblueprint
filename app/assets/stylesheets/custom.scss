@@ -1,0 +1,19 @@
+// Example custom styles
+$primary: #14b8a6;
+$secondary: #0ea5e9;
+
+.post-card {
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .post-type {
+    &.blog { background: #f3e8ff; color: #6d28d9; }
+    &.event { background: #dbeafe; color: #1e40af; }
+    &.news { background: #d1fae5; color: #065f46; }
+  }
+}
