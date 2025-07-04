@@ -25,7 +25,8 @@ Rails.application.routes.draw do
     resources :posts
     resources :comments
     resources :likes
+    resources :pages
     resources :users
-    root to: "posts#index"
+    root to: "posts#index" # or any dashboard you prefer
   end
 end
