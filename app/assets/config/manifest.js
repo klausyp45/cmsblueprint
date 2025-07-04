@@ -6,3 +6,4 @@
 //= link popper.js
 //= link controllers/hello_controller.js
 //= link controllers/index.js
+//= link application.css
