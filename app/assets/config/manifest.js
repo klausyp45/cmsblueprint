@@ -6,3 +6,4 @@
 //= link controllers/hello_controller.js
 //= link controllers/index.js
 //= link application.css
+//= link administrate-field-active_storage/application.css

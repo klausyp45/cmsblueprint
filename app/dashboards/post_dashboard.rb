@@ -12,6 +12,8 @@ class PostDashboard < Administrate::BaseDashboard
     body: Field::Text,
     comments: Field::HasMany,
     likes: Field::HasMany,
+    feature_image: Field::ActiveStorage,
+    main_image: Field::ActiveStorage,
     post_type: Field::String,
     title: Field::String,
     user: Field::BelongsTo,
@@ -39,6 +41,8 @@ class PostDashboard < Administrate::BaseDashboard
     comments
     likes
     post_type
+    feature_image
+    main_image
     title
     user
     created_at
@@ -53,6 +57,8 @@ class PostDashboard < Administrate::BaseDashboard
     comments
     likes
     post_type
+    feature_image
+    main_image
     title
     user
   ].freeze

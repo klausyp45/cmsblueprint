@@ -14,9 +14,9 @@
             </div>
             
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-
+  
                 <% if @post.feature_image.attached? %>
-                    <%= image_tag @post.feature_image.variant(resize_to_limit: [600, 400]) %>
+                <%= image_tag @post.feature_image.variant(resize_to_limit: [600, 400]) %>
                 <% end %>
 
                 <% if @post.main_image.attached? %>

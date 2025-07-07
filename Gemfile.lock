@@ -88,6 +88,9 @@ GEM
       kaminari (~> 1.2.2)
       sassc-rails (~> 2.1)
       selectize-rails (~> 0.6)
+    administrate-field-active_storage (1.0.6)
+      administrate (>= 0.2.2)
+      rails (>= 7.0)
     ast (2.4.3)
     autoprefixer-rails (10.4.21.0)
       execjs (~> 2)
@@ -441,6 +444,7 @@ PLATFORMS
 
 DEPENDENCIES
   administrate
+  administrate-field-active_storage
   bootsnap
   bootstrap (= 5.0.2)
   brakeman
