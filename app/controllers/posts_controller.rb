@@ -20,4 +20,10 @@ class PostsController < ApplicationController
             @comments = @comments.page(params[:page]).per(5) # if using pagination gem
         end
     end
+    
+    private
+
+    def post_params
+        params.require(:post).permit(:title, :body, :post_type, :feature_image, :main_image)
+    end
 end
