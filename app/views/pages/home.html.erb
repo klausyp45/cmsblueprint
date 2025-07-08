@@ -14,6 +14,37 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="text-center mb-4">Featured Posts</h2>
+    <div class="row">
+      <% @featured_posts.each do |post| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <% if post.feature_image.attached? %>
+              <%= image_tag post.feature_image, class: "card-img-top", alt: post.title %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to post.title, post_path(post), class: "text-decoration-none" %></h5>
+              <p class="card-text"><%= truncate(post.body, length: 100) %></p>
+              <p class="text-muted small">Posted by <%= post.user.email %> • <%= time_ago_in_words(post.created_at) %> ago</p>
+            </div>
+            <div class="card-footer text-muted">
+              <span class="me-3">
+                <i class="bi bi-chat me-1"></i>
+                <%= post.comments.count %> comments
+              </span>
+              <span>
+                <i class="bi bi-heart me-1"></i>
+                <%= post.likes.count %> likes
+              </span>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 <% else %>
 <div class="row align-items-center g-lg-5 py-5">
   <div class="col-lg-7 text-center text-lg-start">
