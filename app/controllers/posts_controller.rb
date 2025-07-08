@@ -10,6 +10,7 @@ class PostsController < ApplicationController
         # Optional: Pagination
         @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # if using pagination gem
     end
+    
     def show
         @post = Post.find(params[:id])
         @comments = @post.comments.order(created_at: :desc)

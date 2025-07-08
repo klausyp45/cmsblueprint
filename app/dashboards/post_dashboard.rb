@@ -17,6 +17,13 @@ class PostDashboard < Administrate::BaseDashboard
     post_type: Field::String,
     title: Field::String,
     user: Field::BelongsTo,
+    status: Field::Select.with_options(
+      collection: %w[draft published archived],
+      searchable: false,
+      include_blank: false,
+      default: "draft"
+    ),
+    featured: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -45,6 +52,8 @@ class PostDashboard < Administrate::BaseDashboard
     main_image
     title
     user
+    status
+    featured
     created_at
     updated_at
   ].freeze
@@ -61,6 +70,8 @@ class PostDashboard < Administrate::BaseDashboard
     main_image
     title
     user
+    status
+    featured
   ].freeze
 
   # COLLECTION_FILTERS

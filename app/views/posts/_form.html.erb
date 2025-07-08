@@ -36,6 +36,16 @@
     <%= form.file_field :main_image, class:"form-control mb-3" %>
   </div>
 
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, options_for_select([['Draft', 'draft'], ['Published', 'published'], ['Archived', 'archived']], @post.status), class:"form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :featured %>
+    <%= form.check_box :featured, class:"form-control" %>
+  </div>
+
   <div class="mb-4">
     <%= form.submit class: "btn btn-md btn-primary" %>
   </div>
