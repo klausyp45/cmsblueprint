@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>P45 - CMS Blue Print v1</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/assets/application.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/application.js"></script>
+  </head>
+
+  <body class="d-flex flex-column min-vh-100">
+    <%= render "shared/navbar" %>
+
+    <div class="container flex-fill mt-3">
+        <% flash.each do |type, message| %>
+            <% bs_class = { notice: "success", alert: "danger", error: "danger" }[type.to_sym] || "info" %>
+            <div class="alert alert-<%= bs_class %> alert-dismissible fade show" role="alert">
+                <%= message %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% end %>
+		<div class="row justify-content-center text-center mb-3 mb-lg-5">
+			<div class="col-lg-8 col-xxl-7">
+				<span class="text-muted">Let's Talk</span>
+				<h2 class="display-5 fw-bold mb-3">Contact Us</h2>
+				<p class="lead">Lorem ipsum dolor, sit amet elit Quamnitm veniam dicta, quos nemo minima nulla ducimus officii nulla ducimus officiis! Lorem ipsum dolor, sit amet elit Quamnitm.</p>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<form>
+					<div class="row">
+						<div class="col-12">
+							<div class="mb-3">
+								<input class="form-control bg-light" placeholder="Full name" type="text">
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="mb-3">
+								<input class="form-control bg-light" placeholder="Email address" type="email">
+							</div>
+						</div>
+						<div class="col-12">
+							<div class="mb-3">
+								<textarea class="form-control bg-light" placeholder="Your message" rows="5"></textarea>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="d-grid">
+								<button class="btn btn-primary" type="submit">Send message</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-6">
+				<div class="mt-4 mt-md-0"><img alt="Map" class="img-fluid" src="https://freefrontend.dev/assets/map-img-1.png"></div>
+				<div class="mt-3">
+					<p>Lorem ipsum dolor, sit amet elit Quamnitm.</p>
+				</div>
+			</div>
+		</div>
+    </div>
+
+    <%= render "shared/footer" %>
+  </body>
+</html>
