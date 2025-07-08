@@ -10,6 +10,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pages, only: [:show] do
+    collection do
+      get 'about', to: 'pages#about'
+      get 'contact', to: 'pages#contact'
+      get 'privacy', to: 'pages#privacy'
+      get 'terms', to: 'pages#terms'
+    end
+  end
+
   resources :comments, only: [] do
     resources :comments, only: [:create, :destroy]
   end

@@ -20,6 +20,19 @@ class PostsController < ApplicationController
             @comments = @comments.page(params[:page]).per(5) # if using pagination gem
         end
     end
+
+    def edit
+        @post = Post.find(params[:id])
+        unless @post.user == current_user || current_user.admin?
+            flash[:alert] = "You are not authorized to edit this post."
+            redirect_to post_path(@post) and return
+        end
+    end
+
+    def new 
+        @post = Post.new
+        @post.user = current_user if user_signed_in?
+    end
     
     private
 
