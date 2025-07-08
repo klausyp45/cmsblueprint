@@ -6,32 +6,26 @@
           <i class="bi bi-house-door"></i>
         </a>
       </li>
+
+      <% @pages.each do |page| %>
+        <li class="nav-item">
+          <%= link_to page.title, page_path(page.slug), class:"nav-link" %>
+        </li>
+      <% end %>
       <li class="nav-item">
-        <%= link_to "All Posts", posts_path, class: "nav-link link-dark px-2" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Blog Posts", posts_path(type: "blog"), class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "Event Posts", posts_path(type: "event"), class: "nav-link" %>
-      </li>
-      <li class="nav-item">
-        <%= link_to "News Posts", posts_path(type: "news"), class: "nav-link" %>
+        <%= link_to "Posts", posts_path, class: "nav-link" %>
       </li>
     </ul>
     <ul class="nav"> 
       <% if current_user %>
         <li class="nav-item">
-          <i class="bi bi-door-closed"></i>
           <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "btn btn-link nav-link" %>
         </li>
       <% else %>
         <li class="nav-item">
-          <i class="bi bi-door-open"></i>
           <%= link_to "Login", new_user_session_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <i class="bi bi-person-plus"></i>
           <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
         </li>
       <% end %>
