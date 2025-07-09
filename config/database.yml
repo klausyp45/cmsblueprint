@@ -3,22 +3,22 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   connect_timeout: 5
+  # Force TCP connection explicitly
+  host: <%= ENV.fetch('PGHOST', nil) %>
+  port: <%= ENV.fetch('PGPORT', nil) %>
+  username: <%= ENV.fetch('PGUSER', nil) %>
+  password: <%= ENV.fetch('PGPASSWORD', nil) %>
 
 development:
   <<: *default
   database: cmsblueprint_development
-  cable:
-    <<: *default
-    database: cmsblueprint_development
 
 test:
   <<: *default
   database: cmsblueprint_test
-  cable:
-    <<: *default
-    database: cmsblueprint_test
 
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  # Remove separate cable config since we'll use the same DB
+  # Explicitly disable socket connection
+  socket: ""
