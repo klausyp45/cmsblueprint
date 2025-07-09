@@ -9,10 +9,21 @@ class PageDashboard < Administrate::BaseDashboard
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
     id: Field::Number,
-    content: Field::Text,
-    published: Field::Boolean,
     slug: Field::String,
     title: Field::String,
+    feature_image: Field::ActiveStorage,
+    main_image: Field::ActiveStorage,
+    description: Field::Text,
+    meta_description: Field::Text,
+    content: Field::Text,
+    page_type: Field::String,
+    published: Field::Boolean,
+      status: Field::Select.with_options(
+      collection: %w[draft published archived],
+      searchable: false,
+      include_blank: false,
+      default: "draft"
+    ),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -33,10 +44,16 @@ class PageDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
     id
-    content
-    published
-    slug
     title
+    slug
+    feature_image
+    main_image
+    description
+    meta_description
+    content
+    page_type
+    published
+    status
     created_at
     updated_at
   ].freeze
@@ -45,10 +62,16 @@ class PageDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    content
-    published
-    slug
     title
+    slug
+    description
+    meta_description
+    content
+    feature_image
+    main_image
+    page_type
+    status
+    published
   ].freeze
 
   # COLLECTION_FILTERS
