@@ -34,10 +34,8 @@
 
         <% attributes.each do |attribute| %>
           <dt class="col-sm-3">
-            <%= t(
-              "helpers.label.#{resource_name}.#{attribute.name}",
-              default: page.resource.class.human_attribute_name(attribute.name)
-            %>
+            <%= t("helpers.label.#{resource_name}.#{attribute.name}",
+                 default: page.resource.class.human_attribute_name(attribute.name)) %>
           </dt>
 
           <dd class="col-sm-9 mb-3">

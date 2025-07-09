@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
     def index
         @posts = Post.all.order(created_at: :desc)
-        
-        # Optional: Filter by post type if type parameter exists
-        if params[:type].present?
-            @posts = @posts.where(post_type: params[:type])
-        end
-        
-        # Optional: Pagination
-        @posts = Post.order(created_at: :desc).page(params[:page]).per(6) # if using pagination gem
+
+    # Filter by post type if type parameter exists
+    if params[:type].present?
+        @posts = @posts.where(post_type: params[:type])
+    end
+
+    # Apply pagination to the filtered results
+    @posts = @posts.page(params[:page]).per(6) # Using Kaminari pagination
     end
     
     def show
