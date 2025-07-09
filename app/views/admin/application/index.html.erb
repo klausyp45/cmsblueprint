@@ -1,0 +1,31 @@
+<% content_for(:title) { display_resource_name(page.resource_name) } %>
+
+<% content_for(:page_actions) do %>
+  <%= link_to(
+    "New #{page.resource_name.titleize}",
+    [:new, namespace, page.resource_path.to_sym],
+    class: "btn btn-sm btn-outline-primary",
+  ) if valid_action?(:new) && show_action?(:new, new_resource) %>
+<% end %>
+
+<%= render("index_header",
+  resources: resources,
+  search_term: search_term,
+  page: page,
+  show_search_bar: show_search_bar,
+) %>
+
+<div class="card">
+  <div class="card-body">
+    <%= render(
+      "collection",
+      collection_presenter: page,
+      collection_field_name: resource_name,
+      page: page,
+      resources: resources,
+      table_title: "page-title"
+    ) %>
+
+    <%= render("pagination", resources: resources) %>
+  </div>
+</div>

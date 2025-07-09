@@ -1,0 +1,50 @@
+<% content_for :title do %>
+  <%= t("administrate.actions.show_resource", name: page.page_title) %>
+<% end %>
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h5 class="mb-0"><%= content_for(:title) || page.page_title %></h5>
+
+    <div>
+      <%= link_to(
+        t("administrate.actions.edit_resource", name: page.page_title),
+        [:edit, namespace, page.resource],
+        class: "btn btn-sm btn-outline-primary",
+      ) if accessible_action?(page.resource, :edit) %>
+
+      <%= link_to(
+        t("administrate.actions.destroy"),
+        [namespace, page.resource],
+        class: "btn btn-sm btn-outline-danger",
+        method: :delete,
+        data: { confirm: t("administrate.actions.confirm") }
+      ) if accessible_action?(page.resource, :destroy) %>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <dl class="row">
+      <% page.attributes.each do |title, attributes| %>
+        <% if title.present? %>
+          <div class="col-12">
+            <h6><%= t("helpers.label.#{page.resource_name}.#{title}", default: title) %></h6>
+          </div>
+        <% end %>
+
+        <% attributes.each do |attribute| %>
+          <dt class="col-sm-3">
+            <%= t(
+              "helpers.label.#{resource_name}.#{attribute.name}",
+              default: page.resource.class.human_attribute_name(attribute.name)
+            %>
+          </dt>
+
+          <dd class="col-sm-9 mb-3">
+            <%= render_field attribute, page: page %>
+          </dd>
+        <% end %>
+      <% end %>
+    </dl>
+  </div>
+</div>

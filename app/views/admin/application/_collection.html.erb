@@ -1,0 +1,60 @@
+<div class="table-responsive">
+  <table class="table table-striped table-hover" aria-labelledby="<%= table_title %>">
+    <thead class="table-dark">
+      <tr>
+        <% collection_presenter.attribute_types.each do |attr_name, attr_type| %>
+          <th class="cell-label cell-label--<%= attr_type.html_class %>" scope="col">
+            <%= link_to(sanitized_order_params(page, collection_field_name).merge(
+              collection_presenter.order_params_for(attr_name, key: collection_field_name)
+            )) do %>
+              <%= t(
+                "helpers.label.#{collection_presenter.resource_name}.#{attr_name}",
+                default: resource_class.human_attribute_name(attr_name).titleize,
+              ) %>
+              <% if collection_presenter.ordered_by?(attr_name) %>
+                <i class="bi bi-arrow-<%= collection_presenter.ordered_html_class(attr_name) == 'asc' ? 'up' : 'down' %>"></i>
+              <% end %>
+            <% end %>
+          </th>
+        <% end %>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% resources.each do |resource| %>
+        <tr>
+          <% collection_presenter.attributes_for(resource).each do |attribute| %>
+            <td class="cell-data cell-data--<%= attribute.html_class %>">
+              <% if accessible_action?(resource, :show) -%>
+                <%= link_to render_field(attribute), [namespace, resource], class: "text-decoration-none" %>
+              <% else %>
+                <%= render_field attribute %>
+              <% end -%>
+            </td>
+          <% end %>
+
+          <td class="text-nowrap">
+            <%= link_to(
+              [:edit, namespace, resource],
+              class: "btn btn-sm btn-outline-secondary",
+              title: "Edit"
+            ) do %>
+              <i class="bi bi-pencil"></i>
+            <% end if accessible_action?(resource, :edit) %>
+
+            <%= link_to(
+              [namespace, resource],
+              class: "btn btn-sm btn-outline-danger",
+              title: "Delete",
+              method: :delete,
+              data: { confirm: t("administrate.actions.confirm") }
+            ) do %>
+              <i class="bi bi-trash"></i>
+            <% end if accessible_action?(resource, :destroy) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

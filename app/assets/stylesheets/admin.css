@@ -1,0 +1,54 @@
+/* Admin Layout */
+.admin-layout {
+  background-color: #f8f9fa;
+}
+
+/* Sidebar styling */
+.sidebar {
+  height: calc(100vh - 56px);
+  position: sticky;
+  top: 56px;
+  overflow-y: auto;
+}
+
+.sidebar .nav-link {
+  border-radius: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar .nav-link.active {
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+}
+
+/* Table styling */
+.table-responsive {
+  margin-bottom: 1rem;
+}
+
+/* Form styling */
+.field-unit {
+  margin-bottom: 1.5rem;
+}
+
+.field-unit__label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.field-unit__field .form-control {
+  max-width: 100%;
+}
+
+/* Flash messages */
+.alert {
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .sidebar {
+    height: auto;
+    position: static;
+  }
+}
