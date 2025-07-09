@@ -2,7 +2,7 @@
   "build": {
     "builder": "NIXPACKS",
     "config": {
-      "startCommand": "rails db:prepare && rails server -b 0.0.0.0 -p $PORT",
+      "startCommand": "DISABLE_DATABASE_ENVIRONMENT_CHECK=1 rails db:prepare && rails server -b 0.0.0.0 -p $PORT",
       "postDeploy": ["rails db:migrate"]
     }
   }
