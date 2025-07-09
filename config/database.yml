@@ -21,6 +21,4 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  cable:
-    <<: *default
-    url: <%= ENV['CABLE_DATABASE_URL'] || ENV['DATABASE_URL'] %>
+  # Remove separate cable config since we'll use the same DB
