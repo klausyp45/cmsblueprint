@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_07_09_085902) do
+ActiveRecord::Schema[7.1].define(version: 2025_07_10_084148) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -86,6 +86,24 @@ ActiveRecord::Schema[7.1].define(version: 2025_07_09_085902) do
     t.string "status", default: "draft", null: false
     t.boolean "featured", default: false
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "app_name"
+    t.string "company_name"
+    t.string "email_address"
+    t.string "office_number"
+    t.string "cell_number"
+    t.string "whats_app_number"
+    t.string "facebook_url"
+    t.string "twitter_url"
+    t.string "linkedin_url"
+    t.string "application_status"
+    t.text "application_status_message"
+    t.string "application_version"
+    t.string "application_developer"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

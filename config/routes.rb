@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :likes
     resources :pages
     resources :users
+    resource :settings, only: [:show, :edit, :update] 
     root to: "posts#index" # or any dashboard you prefer
   end
 end

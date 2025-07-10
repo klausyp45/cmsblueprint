@@ -1,0 +1,19 @@
+<%= form_with(model: [:admin, page.resource], url: admin_settings_path, method: :patch, local: true, html: { class: "form" }) do |f| %>
+  <% if page.resource.errors.any? %>
+    <!-- Error messages same as above -->
+  <% end %>
+
+  <div class="form-inputs">
+    <% SettingDashboard::FORM_ATTRIBUTES.each do |attr_name| %>
+      <div class="field-unit">
+        <%= f.label attr_name %>
+        <%= f.text_field attr_name, class: "form-control" %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit "Update Settings", class: "btn btn-primary" %>
+    <%= link_to "Cancel", admin_settings_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

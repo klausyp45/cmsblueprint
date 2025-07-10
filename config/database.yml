@@ -3,28 +3,24 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   connect_timeout: 5
-  # Explicitly force TCP connection and prevent any socket lookup
-  host: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).hostname : 'localhost' %>
-  port: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).port : 5432 %>
-  username: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).user : 'postgres' %>
-  password: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).password : '' %>
-  # Completely disable socket connections
-  variables: {
-    statement_timeout: 5000,
-    connect_timeout: 5000
-  }
 
 development:
   <<: *default
   database: cmsblueprint_development
+  cable:
+    <<: *default
+    database: cmsblueprint_development
 
 test:
   <<: *default
   database: cmsblueprint_test
+  cable:
+    <<: *default
+    database: cmsblueprint_test
 
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  # Additional production-specific configuration
-  min_messages: warning
-  reconnect: true
+  cable:
+    <<: *default
+    url: <%= ENV['CABLE_DATABASE_URL'] || ENV['DATABASE_URL'] %>
