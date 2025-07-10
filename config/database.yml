@@ -3,13 +3,16 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   connect_timeout: 5
-  # Force TCP connection and prevent socket lookup
-  host: <%= ENV.fetch('PGHOST') { ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).hostname : nil } %>
-  port: <%= ENV.fetch('PGPORT') { ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).port : nil } %>
-  username: <%= ENV.fetch('PGUSER') { ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).user : nil } %>
-  password: <%= ENV.fetch('PGPASSWORD') { ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).password : nil } %>
-  # Explicitly disable socket connection
-  socket: ""
+  # Explicitly force TCP connection and prevent any socket lookup
+  host: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).hostname : 'localhost' %>
+  port: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).port : 5432 %>
+  username: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).user : 'postgres' %>
+  password: <%= ENV['DATABASE_URL'] ? URI.parse(ENV['DATABASE_URL']).password : '' %>
+  # Completely disable socket connections
+  variables: {
+    statement_timeout: 5000,
+    connect_timeout: 5000
+  }
 
 development:
   <<: *default
@@ -22,4 +25,6 @@ test:
 production:
   <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  # Additional production-specific overrides
+  # Additional production-specific configuration
+  min_messages: warning
+  reconnect: true
