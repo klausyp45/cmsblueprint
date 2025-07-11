@@ -17,6 +17,7 @@ class SettingDashboard < Administrate::BaseDashboard
     cell_number: Field::String,
     company_name: Field::String,
     email_address: Field::String,
+    address: Field::Text,
     facebook_url: Field::String,
     linkedin_url: Field::String,
     office_number: Field::String,
@@ -50,6 +51,7 @@ class SettingDashboard < Administrate::BaseDashboard
     cell_number
     company_name
     email_address
+    address
     facebook_url
     linkedin_url
     office_number
@@ -67,6 +69,7 @@ class SettingDashboard < Administrate::BaseDashboard
     company_name
     email_address
     office_number
+    address
     cell_number
     whats_app_number
     facebook_url

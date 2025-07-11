@@ -41,7 +41,7 @@ module Admin
         :app_name, :company_name, :email_address, :office_number, 
         :cell_number, :whats_app_number, :facebook_url, :twitter_url, 
         :linkedin_url, :application_status, :application_status_message,
-        :application_version, :application_developer
+        :application_version, :application_developer, :address
       )
     end
   end
